@@ -25,6 +25,7 @@ public class Pessoa {
 	private Date dataNascimento;
 	private String cpf;
 	private Sexo sexo;
+	private Funcao funcao;
 	
 	
 	@Id
@@ -61,6 +62,12 @@ public class Pessoa {
 	}
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
+	}
+	public Funcao getFuncao() {
+		return funcao;
+	}
+	public void setFuncao(Funcao funcao) {
+		this.funcao = funcao;
 	}
 
 }

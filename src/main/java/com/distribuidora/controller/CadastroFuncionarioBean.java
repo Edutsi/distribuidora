@@ -1,5 +1,4 @@
 package com.distribuidora.controller;
-//teste git
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.distribuidora.modelo.Funcao;
 import com.distribuidora.modelo.Funcionario;
 import com.distribuidora.modelo.Sexo;
 import com.distribuidora.service.CadastroFuncionarioService;
@@ -23,16 +23,23 @@ public class CadastroFuncionarioBean implements Serializable {
 
 	private Funcionario funcionario;
 	private List<Sexo> sexos;
+	private List<Funcao> funcoes;
 	public List<Sexo> getSexos() {
 		return sexos;
 	}
+	
+	public List<Funcao> getFuncoes() {
+		return funcoes;
+	}
 	@Inject
 	private CadastroFuncionarioService cadastroFuncionarioService;
+	
 	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		this.sexos = Arrays.asList(Sexo.values());
+		this.funcoes = Arrays.asList(Funcao.values());
 	}
 	
 	public void salvar() {

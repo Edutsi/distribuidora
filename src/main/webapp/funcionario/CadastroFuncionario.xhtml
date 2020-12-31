@@ -52,6 +52,7 @@
 				<p:outputLabel value="Matrícula" for="matricula" />
 				<p:inputText id="matricula" size="20" maxlength="20"
 					value="#{cadastroFuncionarioBean.funcionario.matricula}" />
+
 				<p:outputLabel value="Sexo" for="sexo" />
 				<p:selectOneMenu id="sexo"
 					value="#{cadastroFuncionarioBean.funcionario.sexo}">
@@ -60,6 +61,15 @@
 						itemLabel="#{sexo.descricao}" itemValue="#{sexo}" />
 				</p:selectOneMenu>
 
+
+				<p:outputLabel value="Funcao" for="funcao" />
+				<p:selectOneMenu id="funcao"
+					value="#{cadastroFuncionarioBean.funcionario.funcao}">
+					<f:selectItem itemLabel="Selecione o Cargo" />
+					<f:selectItems value="#{cadastroFuncionarioBean.funcoes}" var="funcao"
+						itemLabel="#{funcao.descricao}" itemValue="#{funcao}" />
+				</p:selectOneMenu>
+				
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

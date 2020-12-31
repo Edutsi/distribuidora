@@ -41,10 +41,13 @@
 				<p:column headerText="Matrícula">
 					<h:outputText value="#{funcionario.matricula}" />
 				</p:column>
+				<p:column headerText="Função">
+					<h:outputText value="#{funcionario.funcao.descricao}" />
+				</p:column>
 				<p:column headerText="Sexo">
 					<h:outputText value="#{funcionario.sexo.descricao}" />
 				</p:column>
-
+		
 				<p:column style="width: 100px; text-align: center">
 					<p:button outcome="CadastroFuncionario" icon="ui-icon-pencil"
 						title="Editar">
