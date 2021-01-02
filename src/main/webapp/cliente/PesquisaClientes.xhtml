@@ -28,6 +28,15 @@
 		    		<p:column headerText="Nome">
 		    			<h:outputText value="#{cliente.nome}" />
 		    		</p:column>
+		    		<p:column headerText="Endereço">
+		    			<h:outputText value="#{cliente.endereco}" />
+		    		</p:column>
+		    		<p:column headerText="Telefone">
+		    			<h:outputText value="#{cliente.telefone}" />
+		    		</p:column>
+		    		
+		    		
+		    		
 		    		<p:column style="width: 100px; text-align: center">
 		    			<p:button outcome="CadastroCliente" icon="ui-icon-pencil" title="Editar">
 		    				<f:param name="cliente" value="#{cliente.codigo}"/>

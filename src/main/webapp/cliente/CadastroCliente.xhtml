@@ -23,7 +23,8 @@
 	    			<p:commandButton value="Salvar" id="botaoSalvar" action="#{cadastroClienteBean.salvar}" update="frmCadastro"/>
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" />
+					<p:button value="Pesquisa" 
+					outcome="/cliente/PesquisaClientes" />
 				</p:toolbarGroup>
 	    	</p:toolbar>
 	    	
@@ -34,6 +35,33 @@
 	    		
 	    		<p:outputLabel value="Nome" for="nome"/>
 	    		<p:inputText id="nome" size="60" maxlength="80" value="#{cadastroClienteBean.cliente.nome}"/>
+	    		
+	    		<p:outputLabel value="Endereco" for="endereco"/>
+	    		<p:inputText id="endereco" size="60" maxlength="80" value="#{cadastroClienteBean.cliente.endereco}"/>
+	    		
+	    		<p:outputLabel value="Telefone" for="telefone"/>
+	    		<p:inputText id="telefone" size="60" maxlength="80" value="#{cadastroClienteBean.cliente.telefone}"/>
+	    		
+	    		<p:outputLabel value="Data de nascimento" for="dataNascimento" />
+				<p:calendar id="dataNascimento" size="20"
+					value="#{cadastroClienteBean.cliente.dataNascimento}"
+					pattern="dd/MM/yyyy" />
+
+				<p:outputLabel value="CPF" for="cpf" />
+				<p:inputText id="cpf" size="20" maxlength="20"
+					value="#{cadastroClienteBean.cliente.cpf}" />
+					
+	    		
+	    		<p:outputLabel value="Sexo" for="sexo" />
+				<p:selectOneMenu id="sexo"
+					value="#{cadastroClienteBean.cliente.sexo}">
+					<f:selectItem itemLabel="Selecione o sexo" />
+					<f:selectItems value="#{cadastroClienteBean.sexos}" var="sexo"
+						itemLabel="#{sexo.descricao}" itemValue="#{sexo}" />
+				</p:selectOneMenu>
+	    		
+	    		
+	    		
 	    	</p:panelGrid>
     	</h:form>
     </ui:define>
