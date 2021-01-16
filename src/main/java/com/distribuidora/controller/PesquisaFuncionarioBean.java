@@ -1,7 +1,6 @@
 package com.distribuidora.controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.inject.Named;
 
 import com.distribuidora.dao.FuncionarioDAO;
 import com.distribuidora.modelo.Funcionario;
+import com.distribuidora.modelolazy.LazyFuncionarioDataModel;
 import com.distribuidora.service.NegocioException;
 import com.distribuidora.util.jsf.FacesUtil;
 
@@ -26,7 +26,7 @@ public class PesquisaFuncionarioBean implements Serializable {
 	FuncionarioDAO funcionarioDAO;
 	
 	private List<Funcionario> funcionarios = new ArrayList<>();
-	///sem o GET list a baixo não achava o bean e gera erro
+	private LazyFuncionarioDataModel lazyFuncionarios;
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
@@ -53,8 +53,13 @@ public class PesquisaFuncionarioBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		funcionarios = funcionarioDAO.buscarTodos();
+		//funcionarios = funcionarioDAO.buscarTodos();
+		lazyFuncionarios = new LazyFuncionarioDataModel(funcionarioDAO);
 		
+	}
+
+	public LazyFuncionarioDataModel getLazyFuncionarios() {
+		return lazyFuncionarios;
 	}
 
 	

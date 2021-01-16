@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
+import com.distribuidora.modelo.Cliente;
 import com.distribuidora.modelo.Funcionario;
 import com.distribuidora.service.NegocioException;
 import com.distribuidora.util.jpa.Transactional;
@@ -40,5 +41,18 @@ public class FuncionarioDAO  implements Serializable {
 		} catch (PersistenceException e) {
 			throw new NegocioException("Funcionario não pode ser excluído.");
 		}
+	}
+	@SuppressWarnings("unchecked")
+	public List<Funcionario> buscarComPaginacao(int first, int pageSize) {
+		
+		return manager.createNamedQuery("Funcionario.buscarTodos")
+				              .setFirstResult(first)
+				              .setMaxResults(pageSize)
+				              .getResultList();
+	}
+
+	public Long encontrarQuantidadeDeFuncionarios() {
+		
+		return manager.createQuery("select count(f) from Funcionario f", Long.class).getSingleResult();
 	}
 }

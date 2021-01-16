@@ -1,7 +1,6 @@
 package com.distribuidora.controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.inject.Named;
 
 import com.distribuidora.dao.ClienteDAO;
 import com.distribuidora.modelo.Cliente;
+import com.distribuidora.modelolazy.LazyClienteDataModel;
 import com.distribuidora.service.NegocioException;
 import com.distribuidora.util.jsf.FacesUtil;
 
@@ -26,7 +26,7 @@ public class PesquisaClienteBean implements Serializable {
 	ClienteDAO clienteDAO;
 	
 	private List<Cliente> clientes = new ArrayList<>();
-	///sem o GET list a baixo não achava o bean e gera erro
+	private LazyClienteDataModel lazyClientes;
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
@@ -53,8 +53,12 @@ public class PesquisaClienteBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		clientes = clienteDAO.buscarTodos();
-		
+		//clientes = clienteDAO.buscarTodos();
+		lazyClientes = new LazyClienteDataModel(clienteDAO);
+	}
+
+	public LazyClienteDataModel getLazyClientes() {
+		return lazyClientes;
 	}
 
 	
