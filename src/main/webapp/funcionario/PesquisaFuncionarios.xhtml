@@ -46,6 +46,9 @@
 				<p:column headerText="Sexo">
 					<h:outputText value="#{funcionario.sexo.descricao}" />
 				</p:column>
+					<p:column headerText="DataAlteracao">
+					<h:outputText value="#{funcionario.dataModificacao}" />
+				</p:column>
 
 				<p:column style="width: 100px; text-align: center">
 					<p:button outcome="CadastroFuncionario" icon="ui-icon-pencil"

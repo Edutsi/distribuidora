@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,7 +30,8 @@ public class Pessoa {
 	private Funcao funcao;
 	private String endereco;
 	private String telefone;
-	
+	private Date dataCriacao;
+	private Date dataModificacao;
 	
 	
 	public String getEndereco() {
@@ -84,5 +87,30 @@ public class Pessoa {
 	public void setFuncao(Funcao funcao) {
 		this.funcao = funcao;
 	}
+	
+	@Temporal(TemporalType.TIMESTAMP)///mapeando data e hora
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataModificacao() {
+		return dataModificacao;
+	}
+	public void setDataModificacao(Date dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+	@PrePersist/// o metodo vai ser executado antes de ser persistido
+	@PreUpdate///executa o metodo antes de ser atualizado
+	public void configuraDatasCriacaoAlteracao() {
+		this.dataModificacao = new Date();
+		
+		if(this.dataCriacao ==null){
+			this.dataCriacao = new Date();
+		}
+	}
+	
 
 }
